@@ -53,41 +53,41 @@ export function TaskCard({
   return (
     <Card className="transition-shadow hover:shadow-lg">
       <CardHeader>
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+        <div className="flex flex-col gap-1.5 sm:flex-row sm:items-start sm:justify-between sm:gap-2">
           <div className="min-w-0 flex-1">
-            <CardTitle className="mb-1 truncate text-base sm:mb-2 sm:text-lg">
+            <CardTitle className="mb-0.5 truncate text-sm sm:mb-1 sm:text-base">
               {task.title}
             </CardTitle>
-            <CardDescription className="line-clamp-2 text-xs sm:text-sm">
+            <CardDescription className="line-clamp-2 text-xs sm:text-xs">
               {task.description || "Sem descrição"}
             </CardDescription>
           </div>
           <button
             onClick={() => onToggleStatus(task)}
-            className="ml-0 cursor-pointer sm:ml-2"
+            className="ml-0 shrink-0 cursor-pointer sm:ml-2"
           >
             {task.status === "completed" ? (
-              <CheckCircle2 className="h-5 w-5 text-green-600" />
+              <CheckCircle2 className="h-4 w-4 text-green-600 sm:h-5 sm:w-5" />
             ) : (
-              <Circle className="h-5 w-5 text-gray-400" />
+              <Circle className="h-4 w-4 text-gray-400 sm:h-5 sm:w-5" />
             )}
           </button>
         </div>
       </CardHeader>
-      <CardContent>
-        <div className="space-y-2">
-          <div className="flex flex-col gap-1 text-xs sm:flex-row sm:items-center sm:justify-between sm:text-sm">
+      <CardContent className="pt-0">
+        <div className="space-y-1.5 sm:space-y-2">
+          <div className="flex flex-col gap-0.5 text-xs sm:flex-row sm:items-center sm:justify-between">
             <span className="text-muted-foreground">Pomodoros:</span>
             <span className="font-medium">
               {task.completedPomodori} / {task.totalPomodori}
             </span>
           </div>
-          <div className="flex flex-col gap-1 text-xs sm:flex-row sm:items-center sm:justify-between sm:text-sm">
+          <div className="flex flex-col gap-0.5 text-xs sm:flex-row sm:items-center sm:justify-between">
             <span className="text-muted-foreground">Duração:</span>
             <span className="font-medium">{task.pomodoroValue} min</span>
           </div>
           {task.taskDate && (
-            <div className="flex flex-col gap-1 text-xs sm:flex-row sm:items-center sm:justify-between sm:text-sm">
+            <div className="flex flex-col gap-0.5 text-xs sm:flex-row sm:items-center sm:justify-between">
               <span className="text-muted-foreground">Data da Tarefa:</span>
               <span className="font-medium">
                 {new Date(task.taskDate).toLocaleDateString("pt-BR")}
@@ -95,37 +95,37 @@ export function TaskCard({
             </div>
           )}
           {task.dueDate && (
-            <div className="flex flex-col gap-1 text-xs sm:flex-row sm:items-center sm:justify-between sm:text-sm">
+            <div className="flex flex-col gap-0.5 text-xs sm:flex-row sm:items-center sm:justify-between">
               <span className="text-muted-foreground">Vencimento:</span>
               <span className="font-medium">
                 {new Date(task.dueDate).toLocaleDateString("pt-BR")}
               </span>
             </div>
           )}
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-2.5 flex flex-col gap-1.5 sm:mt-3 sm:flex-row sm:items-center sm:justify-between sm:gap-2">
             <span
-              className={`w-fit rounded-full px-2 py-1 text-xs ${getStatusColor(
+              className={`w-fit rounded-full px-2 py-0.5 text-xs ${getStatusColor(
                 task.status,
               )}`}
             >
               {getStatusLabel(task.status)}
             </span>
-            <div className="flex gap-2">
+            <div className="flex gap-1 sm:gap-2">
               <Button
-                className="h-8 w-8 cursor-pointer sm:h-9 sm:w-9"
+                className="h-7 w-7 cursor-pointer sm:h-8 sm:w-8"
                 variant="ghost"
                 size="icon"
                 onClick={() => onEdit(task)}
               >
-                <Edit className="h-4 w-4" />
+                <Edit className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
               </Button>
               <Button
-                className="h-8 w-8 cursor-pointer sm:h-9 sm:w-9"
+                className="h-7 w-7 cursor-pointer sm:h-8 sm:w-8"
                 variant="ghost"
                 size="icon"
                 onClick={() => onDelete(task.id)}
               >
-                <Trash2 className="text-destructive h-4 w-4" />
+                <Trash2 className="text-destructive h-3.5 w-3.5 sm:h-4 sm:w-4" />
               </Button>
             </div>
           </div>

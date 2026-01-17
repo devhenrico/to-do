@@ -134,7 +134,7 @@ export function TaskDialog({ open, onClose, task }: TaskDialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="mx-3 max-h-[90vh] max-w-sm overflow-y-auto rounded-2xl sm:mx-0">
+      <DialogContent className="mx-auto max-h-[90vh] max-w-sm overflow-y-auto rounded-2xl">
         <DialogHeader>
           <DialogTitle className="text-lg sm:text-xl">
             {task ? "Editar Tarefa" : "Nova Tarefa"}
