@@ -24,7 +24,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50">
+    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-3 py-8 sm:px-4">
       <AuthCard
         title="Registrar"
         description="Crie uma conta para começar a gerenciar suas tarefas"

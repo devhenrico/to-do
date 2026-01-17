@@ -39,7 +39,7 @@ export function RegisterForm({ onSubmit }: RegisterFormProps) {
         <EmailInput value={email} onChange={setEmail} />
         <PasswordInput value={password} onChange={setPassword} />
       </div>
-      <div className="flex flex-col space-y-4 mt-6">
+      <div className="mt-6 flex flex-col space-y-4">
         <SubmitButton
           label="Criar conta"
           loadingLabel="Criando conta..."

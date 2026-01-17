@@ -15,15 +15,12 @@ export default function LoginPage() {
     return null;
   }
 
-  const handleLoginSubmit = async (
-    email: string,
-    password: string
-  ) => {
+  const handleLoginSubmit = async (email: string, password: string) => {
     await login(email, password);
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50">
+    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-3 py-8 sm:px-4">
       <AuthCard
         title="Login"
         description="Entre com suas credenciais para acessar suas tarefas"

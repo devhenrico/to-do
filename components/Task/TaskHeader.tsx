@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
 import { LogOut, Logs } from "lucide-react";
 import { User } from "@/lib/auth";
+import { IconButton } from "@/components/IconButton";
 
 interface TaskHeaderProps {
   user: User | null;
@@ -9,22 +9,24 @@ interface TaskHeaderProps {
 
 export function TaskHeader({ user, onLogout }: TaskHeaderProps) {
   return (
-    <header className="sticky top-4 z-50 mx-auto max-w-6xl">
-      <div className="bg-white border rounded-2xl shadow-sm px-4 py-4 flex justify-between items-center">
-        <div className="flex items-center gap-3">
-          <Logs className="h-8 w-8" />
-          <h1 className="text-2xl font-bold">Gerenciador de Tarefas</h1>
+    <header className="sticky top-4 z-50 mx-auto max-w-6xl px-3 sm:px-4">
+      <div className="flex flex-col gap-3 rounded-2xl border bg-white p-3 shadow-sm sm:flex-row sm:items-center sm:justify-between sm:px-4 sm:py-4">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <Logs className="h-6 w-6 sm:h-8 sm:w-8" />
+          <h1 className="text-lg font-bold sm:text-2xl">
+            Gerenciador de Tarefas
+          </h1>
         </div>
-        <div className="flex items-center gap-4">
-          <span className="text-sm text-muted-foreground">Olá, {user?.name || "usuário"}</span>
-          <Button
-            variant="outline"
-            className="cursor-pointer rounded-xl"
+        <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-4">
+          <span className="text-muted-foreground text-xs font-medium sm:text-sm">
+            Olá, {user?.name || "usuário"}
+          </span>
+          <IconButton
+            label="Sair"
+            icon={LogOut}
             onClick={onLogout}
-          >
-            <LogOut className="h-4 w-4 mr-2" />
-            Sair
-          </Button>
+            variant="outline"
+          />
         </div>
       </div>
     </header>

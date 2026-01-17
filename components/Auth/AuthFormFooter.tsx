@@ -8,9 +8,9 @@ interface AuthFormFooterProps {
 
 export function AuthFormFooter({ text, linkText, href }: AuthFormFooterProps) {
   return (
-    <p className="text-sm text-center text-muted-foreground">
+    <p className="text-muted-foreground text-center text-xs font-medium sm:text-sm">
       {text}{" "}
-      <Link href={href} className="text-primary hover:underline font-medium">
+      <Link href={href} className="text-primary font-semibold hover:underline">
         {linkText}
       </Link>
     </p>

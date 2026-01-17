@@ -9,10 +9,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { FormInput } from "@/components/FormInput";
+import { ActionButton } from "@/components/ActionButton";
 import { taskService, Task, CreateTaskData } from "@/lib/tasks";
 import { toast } from "@/components/ui/sonner";
 import { USE_OFFLINE_MODE } from "@/lib/config";
@@ -134,31 +134,33 @@ export function TaskDialog({ open, onClose, task }: TaskDialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-sm rounded-2xl">
+      <DialogContent className="mx-3 max-h-[90vh] max-w-sm overflow-y-auto rounded-2xl sm:mx-0">
         <DialogHeader>
-          <DialogTitle>{task ? "Editar Tarefa" : "Nova Tarefa"}</DialogTitle>
-          <DialogDescription>
+          <DialogTitle className="text-lg sm:text-xl">
+            {task ? "Editar Tarefa" : "Nova Tarefa"}
+          </DialogTitle>
+          <DialogDescription className="text-xs sm:text-sm">
             {task
               ? "Atualize os dados da tarefa"
               : "Preencha os dados para criar uma nova tarefa"}
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
-          <div className="grid gap-4 py-4">
-            <div className="grid gap-2">
-              <Label htmlFor="title">Título *</Label>
-              <Input
-                id="title"
-                value={formData.title}
-                onChange={(e) =>
-                  setFormData({ ...formData, title: e.target.value })
-                }
-                required
-                className="rounded-xl"
-              />
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="description">Descrição</Label>
+          <div className="grid gap-3 py-3 sm:gap-4 sm:py-4">
+            <FormInput
+              id="title"
+              label="Título *"
+              type="text"
+              value={formData.title}
+              onChange={(value) =>
+                setFormData({ ...formData, title: value })
+              }
+              required
+            />
+            <div className="grid gap-1.5 sm:gap-2">
+              <Label htmlFor="description" className="text-xs sm:text-sm">
+                Descrição
+              </Label>
               <Textarea
                 id="description"
                 value={formData.description}
@@ -166,80 +168,68 @@ export function TaskDialog({ open, onClose, task }: TaskDialogProps) {
                   setFormData({ ...formData, description: e.target.value })
                 }
                 rows={3}
-                className="rounded-xl resize-none"
+                className="resize-none rounded-xl text-xs sm:text-sm"
               />
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="grid gap-2">
-                <Label htmlFor="totalPomodori">Total de Pomodoros *</Label>
-                <Input
-                  id="totalPomodori"
-                  type="number"
-                  min="1"
-                  value={formData.totalPomodori}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      totalPomodori: parseInt(e.target.value) || 1,
-                    })
-                  }
-                  className="rounded-xl"
-                  required
-                />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="pomodoroValue">Duração (min) *</Label>
-                <Input
-                  id="pomodoroValue"
-                  type="number"
-                  min="1"
-                  value={formData.pomodoroValue}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      pomodoroValue: parseInt(e.target.value) || 1,
-                    })
-                  }
-                  className="rounded-xl"
-                  required
-                />
-              </div>
+            <div className="grid grid-cols-2 gap-2 sm:gap-4">
+              <FormInput
+                id="totalPomodori"
+                label="Total de Pomodoros *"
+                type="number"
+                value={String(formData.totalPomodori)}
+                onChange={(value) =>
+                  setFormData({
+                    ...formData,
+                    totalPomodori: parseInt(value) || 1,
+                  })
+                }
+                required
+              />
+              <FormInput
+                id="pomodoroValue"
+                label="Duração (min) *"
+                type="number"
+                value={String(formData.pomodoroValue)}
+                onChange={(value) =>
+                  setFormData({
+                    ...formData,
+                    pomodoroValue: parseInt(value) || 1,
+                  })
+                }
+                required
+              />
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="grid gap-2">
-                <Label htmlFor="taskDate">Data da Tarefa</Label>
-                <Input
-                  id="taskDate"
-                  type="date"
-                  value={formData.taskDate}
-                  onChange={(e) =>
-                    setFormData({ ...formData, taskDate: e.target.value })
-                  }
-                  className="rounded-xl"
-                />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="dueDate">Data de Vencimento</Label>
-                <Input
-                  id="dueDate"
-                  type="date"
-                  value={formData.dueDate}
-                  onChange={(e) =>
-                    setFormData({ ...formData, dueDate: e.target.value })
-                  }
-                  className="rounded-xl"
-                />
-              </div>
+            <div className="grid grid-cols-2 gap-2 sm:gap-4">
+              <FormInput
+                id="taskDate"
+                label="Data da Tarefa"
+                type="date"
+                value={formData.taskDate}
+                onChange={(value) =>
+                  setFormData({ ...formData, taskDate: value })
+                }
+              />
+              <FormInput
+                id="dueDate"
+                label="Data de Vencimento"
+                type="date"
+                value={formData.dueDate}
+                onChange={(value) =>
+                  setFormData({ ...formData, dueDate: value })
+                }
+              />
             </div>
-            <div className="grid gap-2">
-              <Label htmlFor="status">Status</Label>
+            <div className="grid gap-1.5 sm:gap-2">
+              <Label htmlFor="status" className="text-xs sm:text-sm">
+                Status
+              </Label>
               <select
                 id="status"
                 value={formData.status}
                 onChange={(e) =>
                   setFormData({ ...formData, status: e.target.value })
                 }
-                className="flex h-10 w-full rounded-xl border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="border-input bg-background ring-offset-background focus-visible:ring-ring flex h-9 w-full rounded-xl border px-3 py-2 text-xs focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none sm:h-10 sm:text-sm"
               >
                 <option value="pending">Pendente</option>
                 <option value="in_progress">Em Progresso</option>
@@ -248,41 +238,33 @@ export function TaskDialog({ open, onClose, task }: TaskDialogProps) {
               </select>
             </div>
             {task && (
-              <div className="grid gap-2">
-                <Label htmlFor="completedPomodori">Pomodoros Completos</Label>
-                <Input
-                  id="completedPomodori"
-                  type="number"
-                  min="0"
-                  max={formData.totalPomodori}
-                  value={formData.completedPomodori}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      completedPomodori: parseInt(e.target.value) || 0,
-                    })
-                  }
-                  className="rounded-xl"
-                />
-              </div>
+              <FormInput
+                id="completedPomodori"
+                label="Pomodoros Completos"
+                type="number"
+                value={String(formData.completedPomodori)}
+                onChange={(value) =>
+                  setFormData({
+                    ...formData,
+                    completedPomodori: parseInt(value) || 0,
+                  })
+                }
+              />
             )}
           </div>
-          <DialogFooter>
-            <Button
+          <DialogFooter className="mt-4 flex flex-col-reverse gap-2 sm:mt-6 sm:flex-row sm:gap-3">
+            <ActionButton
+              label="Cancelar"
               type="button"
-              className="rounded-xl cursor-pointer"
               variant="outline"
               onClick={onClose}
-            >
-              Cancelar
-            </Button>
-            <Button
+            />
+            <ActionButton
+              label={task ? "Atualizar" : "Criar"}
               type="submit"
-              className="rounded-xl cursor-pointer"
               disabled={loading}
-            >
-              {loading ? "Salvando..." : task ? "Atualizar" : "Criar"}
-            </Button>
+              loading={loading}
+            />
           </DialogFooter>
         </form>
       </DialogContent>

@@ -15,11 +15,11 @@ export function SubmitButton({
   return (
     <Button
       type="submit"
-      className="w-full cursor-pointer rounded-xl relative"
+      className="relative w-full cursor-pointer rounded-xl py-4 text-xs sm:py-5 sm:text-sm"
       disabled={loading}
     >
       {loading ? loadingLabel : label}
-      <ArrowRight className="h-5 w-5 absolute right-3 bg-white text-black rounded-full p-1" />
+      <ArrowRight className="absolute right-2 h-4 w-4 rounded-full bg-white p-1 text-black sm:right-3 sm:h-5 sm:w-5" />
     </Button>
   );
 }

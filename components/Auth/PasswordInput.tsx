@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Lock } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { FormInput } from "@/components/FormInput";
 import { PasswordVisibilityToggle } from "@/components/PasswordVisibilityToggle";
 
 interface PasswordInputProps {
@@ -26,27 +25,22 @@ export function PasswordInput({
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="space-y-1.5">
-      <Label htmlFor={id} className="text-sm font-medium">
-        {label}
-      </Label>
-      <div className="relative">
-        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-        <Input
-          id={id}
-          type={showPassword ? "text" : "password"}
-          placeholder={placeholder}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          className="pl-10 pr-10 rounded-xl"
-          required={required}
-          minLength={minLength}
-        />
+    <FormInput
+      id={id}
+      label={label}
+      type={showPassword ? "text" : "password"}
+      value={value}
+      onChange={onChange}
+      placeholder={placeholder}
+      required={required}
+      icon={Lock}
+      minLength={minLength}
+      suffix={
         <PasswordVisibilityToggle
           showPassword={showPassword}
           onToggle={() => setShowPassword(!showPassword)}
         />
-      </div>
-    </div>
+      }
+    />
   );
 }

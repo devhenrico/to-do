@@ -77,20 +77,21 @@ src/
 ├── components/
 │   ├── ui/                 # Componentes shadcn/ui
 │   ├── Auth/
-│   │   ├── AuthCard.tsx
-│   │   ├── LoginForm.tsx
-│   │   ├── RegisterForm.tsx
-│   │   ├── EmailInput.tsx
-│   │   ├── PasswordInput.tsx
-│   │   ├── NameInput.tsx
-│   │   └── AuthFormFooter.tsx
+│   │   ├── AuthCard.tsx              # Card genérico para formulários auth
+│   │   ├── LoginForm.tsx             # Formulário de login
+│   │   ├── RegisterForm.tsx          # Formulário de registro
+│   │   ├── EmailInput.tsx            # Input de email com ícone Mail
+│   │   ├── PasswordInput.tsx         # Input de senha com ícone Lock e toggle Eye/EyeOff
+│   │   ├── NameInput.tsx             # Input de nome com ícone UserRound
+│   │   └── AuthFormFooter.tsx        # Footer de formulários de autenticação
 │   ├── Task/
 │   │   ├── TaskCard.tsx    # Card individual de tarefa
 │   │   ├── TaskHeader.tsx  # Header com dados do usuário
 │   │   ├── TaskMain.tsx    # Conteúdo principal
 │   │   └── TaskDialog.tsx  # Modal criar/editar tarefa
-│   ├── SubmitButton.tsx    # Botão de submissão reutilizável
-│   └── PasswordVisibilityToggle.tsx
+│   ├── PasswordVisibilityToggle.tsx  # Toggle para mostrar/ocultar senha
+│   ├── ProtectedRoute.tsx            # Wrapper para rotas protegidas
+│   └── SubmitButton.tsx              # Botão de submissão reutilizável
 ├── contexts/
 │   └── AuthContext.tsx     # Contexto de autenticação global
 ├── lib/
